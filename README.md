@@ -21,13 +21,13 @@ Currently, **StructMSIG** supports the following signing structures.
 ## Data Model
 ### Structured Data
 In **StructMSIG**, data is modeled as structured data (```StructData```) as
-```json
+```
 {
     "items": [DataItem, ...]
 }
 ```
 where ```DataItem``` is modeled as
-```json
+```
 {
     "key": name of data item (str),
     "value": base64-encoded content of data item (str)
@@ -70,7 +70,7 @@ For example,
 
 ### Sequential Signature
 The sequential signature (```SeqSig```) is the signature of sequential signing structure and modeled as
-```json
+```
 {
     "signatures":[NodalSig, ...] (list[NodalSig])
 }
