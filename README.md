@@ -52,7 +52,7 @@ For example,
 
 ### Nodal Signature
 The nodal signature (```NodalSig```) is the signature of nodal signing structure and modeled as
-```json
+```
 {
     "signer": name of signer (str),
     "signature": hex signature (str),
