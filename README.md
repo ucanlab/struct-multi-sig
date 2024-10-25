@@ -56,7 +56,7 @@ The nodal signature (```NodalSig```) is the signature of nodal signing structure
 {
     "signer": name of signer (str),
     "signature": hex signature (str),
-    "scope": [key of DataItem, ...] (list[str])
+    "scope": [key of DataItem, ...] (List[str])
 }
 ```
 For example,
@@ -72,7 +72,7 @@ For example,
 The sequential signature (```SeqSig```) is the signature of sequential signing structure and modeled as
 ```
 {
-    "signatures":[NodalSig, ...] (list[NodalSig])
+    "signatures":[NodalSig, ...] (List[NodalSig])
 }
 ```
 For example,
@@ -129,7 +129,6 @@ seq_sig = open_seqsig('./signer.seqsig')
 ### Nodal Signing Structure
 **Step 1.** Import modules
 ```python
-from structmsig.data_model import NodalSig
 from structmsig.nodal_struct import sign, verify
 from structmsig.utilis import create_struct_data, open_nodalsig
 ```
@@ -167,13 +166,13 @@ result = verify(data, nodal_sig, 'signer-cert.pem')
 ## Sequential Signing Structure
 **Step 1.** Import modules
 ```python
-from structmsig.data_model import SeqSig
 from structmsig.sequential_structure import sign, verify
 from structmsig.utilis import create_struct_data, open_segsig
 ```
 **Step 2.** Prepare StructData
 
 Here is the utility to create ```StructData```.
+
 ```python
 data = create_struct_data(
     texts = {'text1':'hello', 'text2':'world'},
@@ -183,17 +182,21 @@ data = create_struct_data(
 **Step 3.** Sign StructData
 
 Signer 1 can sign data by giving name, structured data, private key, scope (***optional, defaults to all***) and flag to output signaure files (***optional, defaults to False***). 
+
 ```python
 seq_sig_1 = sign('signer1', data, 'signer1-priv.pem', scope=['text1','file2'], out=True)
 ```
+
 Then, signer 1 can send data and sequential signature (```singer1.seqsig```) to signer 2.
 
 Signer 2 can create ```StructData``` as in Step 2 and open sequential signature (```signer1.seqsig```) with the utility
+
 ```python
 seq_sig_1 = open_seqsig('signer1.seqsig')
 ```
 
 Signer 2 then can sign by giving name, structured data, private key, scope (***optional, defaults to all***), sequential signature of signer 1, and flag to output signaure files (***optional, defaults to False***). 
+
 ```python
 seq_sigs = sequential_sign('signer2', data, 'signer2-priv.pem', seq_sig=seq_sig_1, scope=['text1','file2'], out=True)
 ```
@@ -209,6 +212,7 @@ seq_sig = open_seqsig('signer2.seqsig')
 ```
 
 Then, verifier can verify sequential signature by giving structured data, sequential signature of signer 2, and certificates of signer 1 and signer 2.
-```
+
+```python
 result = verify(data, seq_sig, ['signer1-cert.pem','signer2-cert.pem'])
 ```

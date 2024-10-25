@@ -2,7 +2,7 @@
 Structured Multi-Signature (StructMSIG)
 """
 __name__ = "structmsig"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Wei-Tsung Su"
 __author_email__="ellington.su@gmail.com"
 __url__="https://github.com/ucanlab/struct-multi-sig"

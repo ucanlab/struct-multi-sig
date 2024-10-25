@@ -1,7 +1,7 @@
 """
 Data models in StructMSIG
 """
-import typing
+from typing import Optional, List
 from pydantic import BaseModel
 
 class DataItem(BaseModel):
@@ -20,9 +20,9 @@ class StructData(BaseModel):
     Class represeting a structured data
 
     Attributes:
-        items (list[DataItem]): a list of DataItem
+        items (List[DataItem]): a list of DataItem
     """
-    items: list[DataItem]
+    items: List[DataItem]
 
 class NodalSig(BaseModel):
     """
@@ -31,11 +31,11 @@ class NodalSig(BaseModel):
     Attributes:
         signer (str): name of signer
         signature (str or None): hex signature if exist or None
-        scope (list[str] or None): a list of keys of DataItem to define scope if exist or None
+        scope (List[str] or None): a list of keys of DataItem to define scope if exist or None
     """
     signer: str
-    signature: typing.Optional[str] = None
-    scope: typing.Optional[list[str]] = None
+    signature: Optional[str] = None
+    scope: Optional[List[str]] = None
 
 class SeqSig(BaseModel):
     """
@@ -44,4 +44,4 @@ class SeqSig(BaseModel):
     Attributes:
         signatures (list[NodeSig] or None): a list of nodal signatures if exist or None
     """
-    signatures: typing.Optional[list[NodalSig]] = None
+    signatures: Optional[List[NodalSig]] = None
